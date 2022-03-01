@@ -61,6 +61,33 @@ namespace AljabhaAldemokratiaAlshaabia.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About us.
+        /// </summary>
+        public static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact us.
+        /// </summary>
+        public static string Contact {
+            get {
+                return ResourceManager.GetString("Contact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        public static string Home {
+            get {
+                return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Aljabha Aldemokratie Alshaabie.
         /// </summary>
         public static string Name {
@@ -70,7 +97,7 @@ namespace AljabhaAldemokratiaAlshaabia.Shared.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome.
+        ///   Looks up a localized string similar to Welcome!.
         /// </summary>
         public static string Welcome {
             get {
