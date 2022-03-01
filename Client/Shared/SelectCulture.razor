@@ -12,7 +12,7 @@
     </MatSelectValue>
 *@
 
-@if (CurrentCultureID != null)
+@if (CurrentCulture != null)
 {
 <select class="form-control" @onchange="@OnCultureChanged" style="width:150px">
     @foreach (var Language in @LocalizerSettings.SupportedCulturesWithName)
@@ -33,13 +33,11 @@
 @code {
 
     private string CurrentCulture { get; set; }
-    private string CurrentCultureID { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         CurrentCulture = CultureInfo.CurrentCulture.Name;
         Console.WriteLine("The CultureInfo.CurrentCulture.TwoLetterISOLanguageName is : " + CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
-        CurrentCultureID = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
 
         await base.OnInitializedAsync();
     }

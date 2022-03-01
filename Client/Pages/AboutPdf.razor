@@ -1,0 +1,46 @@
+﻿@using System.IO
+@inject IJSRuntime JS
+
+@if (Language == "English")
+{
+
+    <p>Our Plan in English</p>
+    <button @onclick="DownloadFileFromURL">
+        Download
+    </button>
+}
+else
+{
+
+    <p>الخطة باللغة العربية</p>
+    <button @onclick="DownloadFileFromURL">
+        تحميل
+    </button>
+}
+
+@code {
+
+    [Parameter]
+    public string Language { get; set; }
+
+    private async Task DownloadFileFromURL()
+    {
+        var fileURL="";
+        var fileName= "";
+
+        if (Language == "English")
+        {
+             fileURL = "{FILE URL}";
+             fileName = "{FILE NAME}";
+
+        }
+        else
+        {
+             fileURL = "{FILE URL}";
+             fileName = "{FILE NAME}";
+
+        }
+        await JS.InvokeVoidAsync("triggerFileDownload", fileName, fileURL);
+    }
+
+}

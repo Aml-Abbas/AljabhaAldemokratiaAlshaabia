@@ -7,7 +7,18 @@
 
 <p>choose a language in which u want to read our plan</p>
 
+
+<select class="form-control" @bind="choosenLanguage" style="width:150px">
+
+    <option value="English">English</option>
+    <option value="Arabic">Arabic</option>
+
+</select>
+
+<AboutPdf Language=@choosenLanguage></AboutPdf>
+
 @code {
 
+    public string choosenLanguage = "English";
 
 }
