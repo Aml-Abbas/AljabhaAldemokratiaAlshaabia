@@ -9,8 +9,8 @@ namespace AljabhaAldemokratiaAlshaabia.Client.Shared
     {
         public const string NeutralCulture = "en-US";
 
-        public static readonly string[] SupportedCultures = { NeutralCulture, "ar-AR"};
+        public static readonly string[] SupportedCultures = { NeutralCulture, "ar-DZ" };
 
-        public static readonly (string, string)[] SupportedCulturesWithName = new[] { ("English", NeutralCulture), ("Arabic", "ar-AR")};
+        public static readonly (string, string)[] SupportedCulturesWithName = new[] { ("English", NeutralCulture), ("Arabic", "ar-DZ")};
     }
 }

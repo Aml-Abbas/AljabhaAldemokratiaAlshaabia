@@ -10,14 +10,7 @@
     <div class="main">
         <div class="top-row px-4">
 
-            <select Class="ml-md-auto" onchange="OnCultureChanged()">
-
-                @foreach (var language in @LocalizerSettings.SupportedCulturesWithName)
-                {
-                    <option value="@language.Item2"> @language.Item1 </option>
-                }
-
-            </select>
+            <SelectCulture></SelectCulture>
 
         </div>
 
@@ -28,17 +21,5 @@
 </div>
 
 @code{
-    private string CurrentCulture { get; set; }
 
-    protected override async Task OnInitializedAsync()
-    {
-        CurrentCulture = CultureInfo.CurrentCulture.Name;
-
-        await base.OnInitializedAsync();
-    }
-
-    public void OnCultureChanged(string culture)
-    {
-        navigationManager.NavigateTo(navigationManager.Uri, forceLoad: true);
-    }
 }

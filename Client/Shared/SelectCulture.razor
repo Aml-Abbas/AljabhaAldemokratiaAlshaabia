@@ -1,0 +1,55 @@
+﻿@using System.Globalization
+@inject ILocalStorageService _localStorage
+@inject NavigationManager _navigationManager
+@*
+    <MatSelectValue Class="ml-md-auto" Value="CurrentCulture"
+                    Items="@LocalizerSettings.SupportedCulturesWithName"
+                    ValueSelector=@(i => i.Item2)
+                    ValueChanged="(string i) => OnCultureChanged(i)">
+        <ItemTemplate Context="CultureItem">
+            <span>@CultureItem.Item1</span>
+        </ItemTemplate>
+    </MatSelectValue>
+*@
+
+@if (CurrentCultureID != null)
+{
+<select class="form-control" @onchange="@OnCultureChanged" style="width:150px">
+    @foreach (var Language in @LocalizerSettings.SupportedCulturesWithName)
+    {
+        if (@Language.Item2.Contains(CultureInfo.CurrentCulture.TwoLetterISOLanguageName))
+        {
+            <option value=@Language.Item2 selected>@Language.Item1</option>
+        }
+        else
+        {
+            <option value=@Language.Item2>@Language.Item1</option>
+        }
+    }
+</select>
+}
+
+
+@code {
+
+    private string CurrentCulture { get; set; }
+    private string CurrentCultureID { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        CurrentCulture = CultureInfo.CurrentCulture.Name;
+        Console.WriteLine("The CultureInfo.CurrentCulture.TwoLetterISOLanguageName is : " + CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+        CurrentCultureID = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+
+        await base.OnInitializedAsync();
+    }
+
+    public void OnCultureChanged(ChangeEventArgs e)
+    {
+        CurrentCulture = e.Value.ToString();
+        Console.WriteLine("The selected language is : " + CurrentCulture);
+
+        _localStorage.SetItemAsync<string>("culture", CurrentCulture);
+        _navigationManager.NavigateTo(_navigationManager.Uri, forceLoad: true);
+    }
+}
