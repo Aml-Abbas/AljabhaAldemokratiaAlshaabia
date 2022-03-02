@@ -1,11 +1,16 @@
-﻿@using System.IO
-@inject IJSRuntime JS
+﻿@using Syncfusion.Pdf
+@using Syncfusion.Pdf.Grid;
+@using Syncfusion.Drawing;
+@using Syncfusion.Pdf.Graphics;
+@inject Microsoft.JSInterop.IJSRuntime JS
+@using System.IO;
+
 
 @if (Language == "English")
 {
 
     <p>Our Plan in English</p>
-    <button @onclick="DownloadFileFromURL">
+    <button @onclick="@DownloadFileFromURL">
         Download
     </button>
 }
@@ -13,7 +18,7 @@ else
 {
 
     <p>الخطة باللغة العربية</p>
-    <button @onclick="DownloadFileFromURL">
+    <button @onclick="@DownloadFileFromURL">
         تحميل
     </button>
 }
@@ -25,22 +30,21 @@ else
 
     private async Task DownloadFileFromURL()
     {
-        var fileURL="";
-        var fileName= "";
+        var fileURL = "";
 
-        if (Language == "English")
+        @if (Language == "English")
         {
-             fileURL = "{FILE URL}";
-             fileName = "{FILE NAME}";
-
+            fileURL = "https://drive.google.com/file/d/1T1oITRgZWnkzCOd99lvGYEAzttfKL8Zb/view?usp=sharing";
         }
         else
         {
-             fileURL = "{FILE URL}";
-             fileName = "{FILE NAME}";
-
+            fileURL = "https://github.com/Aml-Abbas/AljabhaAldemokratiaAlshaabia/blob/master/Shared/Resources/Arabic.txt";
         }
-        await JS.InvokeVoidAsync("triggerFileDownload", fileName, fileURL);
+
+
+        // Download the PDF document
+        JS.SaveAs("Sample.pdf", fileURL);
+
     }
 
 }
